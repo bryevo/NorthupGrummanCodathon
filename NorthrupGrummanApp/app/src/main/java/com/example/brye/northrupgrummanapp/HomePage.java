@@ -48,8 +48,11 @@ public class HomePage extends AppCompatActivity implements LocationListener {
         init();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         Notify.newNotification("Update Alert", "Traffic: Severe Accident", this);
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
@@ -61,6 +64,9 @@ public class HomePage extends AppCompatActivity implements LocationListener {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 0, this);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
