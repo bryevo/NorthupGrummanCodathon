@@ -23,24 +23,22 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
-<<<<<<< HEAD
-public class HomePage extends AppCompatActivity implements GeoTask.Geo{
+import static com.example.brye.northrupgrummanapp.R.id.textView_result1;
+import static com.example.brye.northrupgrummanapp.R.id.url;
 
-    public Button button;
+public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationListener{
+
     EditText edttxt_from,edttxt_to;
     Button btn_get;
     String str_from,str_to;
     TextView tv_result1,tv_result2;
-=======
-public class HomePage extends AppCompatActivity implements LocationListener {
 
     public Button button;
     public TextView loc;
     public LocationManager locationManager;
->>>>>>> origin/master
 
-    public static double lat;
-    public static double lon;
+    public static double lon = -117.0719;
+    public static double lat = 32.7757;
     public static String name;
 
     //Initialize the Edit Directions button
@@ -56,7 +54,7 @@ public class HomePage extends AppCompatActivity implements LocationListener {
         edttxt_from= (EditText) findViewById(R.id.editText_from);
         edttxt_to= (EditText) findViewById(R.id.editText_to);
         btn_get= (Button) findViewById(R.id.button_get);
-        tv_result1= (TextView) findViewById(R.id.textView_result1);
+        tv_result1= (TextView) findViewById(textView_result1);
         tv_result2=(TextView) findViewById(R.id.textView_result2);
 
     }
@@ -69,16 +67,22 @@ public class HomePage extends AppCompatActivity implements LocationListener {
         setSupportActionBar(toolbar);
         init();
 
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
+
+            ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  },1);
+        }
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 0, this);
+
+
         Notify.newNotification("Update Alert", "Traffic: Severe Accident", this);
 
-<<<<<<< HEAD
         btn_get.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 str_from=edttxt_from.getText().toString();
                 str_to=edttxt_to.getText().toString();
-                String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to + "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyBMUjResWPXk24xE8R5D7_JVRVu9RA0gEA";
-                new GeoTask(HomePage.this).execute(url);
+
 
             }
         });
@@ -89,18 +93,10 @@ public class HomePage extends AppCompatActivity implements LocationListener {
         String res[]=result.split(",");
         Double min=Double.parseDouble(res[0])/60;
         int dist=Integer.parseInt(res[1])/1000;
-        tv_result1.setText("Duration= " + (int) (min / 60) + " hr " + (int) (min % 60) + " mins");
-        tv_result2.setText("Distance= " + dist + " kilometers");
-=======
+        //tv_result1.setText("Duration= " + (int) (min / 60) + " hr " + (int) (min % 60) + " mins");
+        //tv_result2.setText("Distance= " + dist + " kilometers");
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-
-            ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  },1);
-        }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 0, this);
->>>>>>> origin/master
-
+        Notify.newNotification(name, min+" min away", this);
     }
 
     @Override
@@ -127,7 +123,14 @@ public class HomePage extends AppCompatActivity implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         loc.setText("Latitude:" + location.getLatitude() + ", Longitude:" + location.getLongitude());
-        Notify.newNotification(name,Double.toString(location.getLongitude() - lon),this);
+        String or = location.getLongitude()+","+location.getLatitude();
+        String dest = lon + "," + lat;
+
+        String url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+or+"&destinations="+dest+"&key=AIzaSyBcx3w9EN8P0GySufslLpXNTwK8uRitjsE";
+        Log.d("ayy",url);
+        Log.d("abb",url);
+
+        new GeoTask(HomePage.this).execute(url);
     }
 
     @Override
