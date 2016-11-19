@@ -52,7 +52,7 @@ public class EditDirections extends SampleActivityBase implements PlaceSelection
         HomePage.lon = place.getLatLng().longitude;
         HomePage.name = place.getName().toString();
 
-        mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(), place.getId(),
+        mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(),
                 place.getAddress(), place.getLatLng()));
 
         CharSequence attributions = place.getAttributions();
@@ -74,10 +74,10 @@ public class EditDirections extends SampleActivityBase implements PlaceSelection
                 Toast.LENGTH_SHORT).show();
     }
 
-    private static Spanned formatPlaceDetails(Resources res, CharSequence name, String id,
+    private static Spanned formatPlaceDetails(Resources res, CharSequence name,
                                               CharSequence address, LatLng latlng) {
-        Log.e(TAG, res.getString(R.string.place_details, name, id, address, latlng));
-        return Html.fromHtml(res.getString(R.string.place_details, name, id, address, latlng));
+        Log.e(TAG, res.getString(R.string.place_details, name, address, latlng));
+        return Html.fromHtml(res.getString(R.string.place_details, name, address, latlng));
 
     }
 
