@@ -15,6 +15,7 @@ public class HomePage extends AppCompatActivity {
 
     public Button button;
 
+    //Initialize the Edit Directions button
     public void init() {
         button = (Button) findViewById(R.id.btn_newDirection);
         button.setOnClickListener(new View.OnClickListener() {
