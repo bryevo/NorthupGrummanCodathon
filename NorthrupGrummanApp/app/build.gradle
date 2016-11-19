@@ -4,8 +4,13 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
+<<<<<<< Updated upstream
         applicationId 'com.example.brye.northrupgrummanapp'
         minSdkVersion 15
+=======
+        applicationId "com.example.brye.northrupgrummanapp"
+        minSdkVersion 16
+>>>>>>> Stashed changes
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
