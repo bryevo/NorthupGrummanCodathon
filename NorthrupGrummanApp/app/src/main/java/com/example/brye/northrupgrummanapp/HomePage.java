@@ -46,15 +46,9 @@ public class HomePage extends AppCompatActivity implements LocationListener {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         init();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
         Notify.newNotification("Update Alert", "Traffic: Severe Accident", this);
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
@@ -63,13 +57,6 @@ public class HomePage extends AppCompatActivity implements LocationListener {
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 0, this);
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
 
     @Override
