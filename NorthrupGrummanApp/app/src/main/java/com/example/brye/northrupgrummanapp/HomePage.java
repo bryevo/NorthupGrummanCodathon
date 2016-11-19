@@ -27,6 +27,10 @@ public class HomePage extends AppCompatActivity implements LocationListener {
     public TextView loc;
     public LocationManager locationManager;
 
+    public static double lat;
+    public static double lon;
+    public static String name;
+
     //Initialize the Edit Directions button
     public void init() {
         button = (Button) findViewById(R.id.btn_newDirection);
@@ -83,7 +87,7 @@ public class HomePage extends AppCompatActivity implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         loc.setText("Latitude:" + location.getLatitude() + ", Longitude:" + location.getLongitude());
-        Notify.newNotification( Double.toString(location.getLatitude()),Double.toString(location.getLongitude()),this);
+        Notify.newNotification(name,Double.toString(location.getLongitude() - lon),this);
     }
 
     @Override

@@ -8,6 +8,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.gson.Gson;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
@@ -48,10 +49,13 @@ public class EditDirections extends SampleActivityBase implements PlaceSelection
         Log.i(TAG, "Place Selected: " + place.getName());
 
         // Format the returned place's details and display them in the TextView.
-        mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(), place.getId(),
-                place.getAddress(), place.getLatLng()));
-
+        mPlaceDetailsText.setText(place.getName()+ " is now being tracked.");
         CharSequence attributions = place.getAttributions();
+
+        HomePage.lat = place.getLatLng().latitude;
+        HomePage.lon = place.getLatLng().longitude;
+        HomePage.name = place.getName().toString();
+
         if (!TextUtils.isEmpty(attributions)) {
             mPlaceAttribution.setText(Html.fromHtml(attributions.toString()));
         } else {
