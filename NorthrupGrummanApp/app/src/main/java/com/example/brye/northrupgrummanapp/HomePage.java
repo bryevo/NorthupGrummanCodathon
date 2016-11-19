@@ -25,15 +25,12 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import static com.example.brye.northrupgrummanapp.R.id.textView_result1;
 import static com.example.brye.northrupgrummanapp.R.id.url;
 
 public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationListener{
 
-    EditText edttxt_from,edttxt_to;
     Button btn_get;
     String str_from,str_to;
-    TextView tv_result1,tv_result2;
 
     public Button button;
     public TextView loc;
@@ -53,11 +50,6 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
                 startActivity(intent);
             }
         });
-        edttxt_from= (EditText) findViewById(R.id.editText_from);
-        edttxt_to= (EditText) findViewById(R.id.editText_to);
-        btn_get= (Button) findViewById(R.id.button_get);
-        tv_result1= (TextView) findViewById(textView_result1);
-        tv_result2=(TextView) findViewById(R.id.textView_result2);
 
     }
 
@@ -78,16 +70,6 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
 
 
         Notify.newNotification("Update Alert", "Traffic: Severe Accident", this);
-
-        btn_get.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                str_from=edttxt_from.getText().toString();
-                str_to=edttxt_to.getText().toString();
-
-
-            }
-        });
     }
 
     @Override

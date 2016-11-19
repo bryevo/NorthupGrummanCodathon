@@ -20,46 +20,6 @@
         android:id="@+id/textView_info"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_result1"
-        tools:text="From"
-        android:layout_below="@+id/button_get"
-        android:layout_alignRight="@+id/button_get"
-        android:layout_alignEnd="@+id/button_get"
-        android:layout_marginTop="122dp" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_from"
-        android:textStyle="italic"
-        android:text="From Location"
-        android:layout_toRightOf="@+id/textView_result1"
-        android:layout_toEndOf="@+id/textView_result1"
-        android:layout_alignTop="@+id/textView_result1" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_to"
-        android:textStyle="italic"
-        android:text="To Location"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:layout_alignBottom="@+id/textView_result2"
-        android:layout_alignLeft="@+id/editText_from"
-        android:layout_alignStart="@+id/editText_from" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView_result2"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,18 +30,6 @@
         android:layout_alignParentEnd="true"
         android:onClick="createNewDirection" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_get"
-        android:text="GO"
-        android:layout_below="@+id/textView_info"
-        android:layout_toRightOf="@+id/textView_info"
-        android:layout_toEndOf="@+id/textView_info"
-        android:layout_marginTop="15dp" />
-
-
-
 
     <TextView
         android:layout_width="323dp"
@@ -89,6 +37,8 @@
         android:id="@+id/loc"
         android:textAlignment="center"
         android:layout_weight="1"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/editText_to"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
 </RelativeLayout>
