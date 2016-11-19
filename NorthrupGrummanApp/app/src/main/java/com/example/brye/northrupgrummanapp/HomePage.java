@@ -1,31 +1,27 @@
 package com.example.brye.northrupgrummanapp;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import com.google.android.gms.maps.model.LatLng;
-
-import static com.example.brye.northrupgrummanapp.R.id.url;
+import java.util.List;
+import java.util.Locale;
 
 public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationListener{
 
@@ -35,10 +31,13 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
     public Button button;
     public TextView loc;
     public LocationManager locationManager;
+    public List<Address> addresses;
+    public Geocoder geocoder;
 
     public static double lon = -117.0719;
     public static double lat = 32.7757;
     public static String name;
+    public TextView locResults;
 
     //Initialize the Edit Directions button
     public void init() {
@@ -60,7 +59,7 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         init();
-
+        locResults = (TextView) findViewById(R.id.listBox);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if ( ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
 
@@ -69,18 +68,20 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 0, this);
 
 
-        Notify.newNotification("Update Alert", "Traffic: Severe Accident", this);
+        Notify.newNotification("Update Alert", "Traffic Conditions: Clear", this);
     }
 
     @Override
     public void setDouble(String result) {
-        String res[]=result.split(",");
-        Double min=Double.parseDouble(res[0])/60;
+        String res[] = result.split(",");
+        Double min = Double.parseDouble(res[0])/60;
         int dist=Integer.parseInt(res[1])/1000;
         //tv_result1.setText("Duration= " + (int) (min / 60) + " hr " + (int) (min % 60) + " mins");
         //tv_result2.setText("Distance= " + dist + " kilometers");
 
-        Notify.newNotification(name, min+" min away", this);
+        Notify.newNotification(name, min + " mins away", this);
+        locResults.setText(name + "Distance= " + dist + " kilometers" + "\n" + min + " mins away");
+
     }
 
     @Override
@@ -106,7 +107,20 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
 
     @Override
     public void onLocationChanged(Location location) {
-        loc.setText("Latitude:" + location.getLatitude()+", Longitude:" + location.getLongitude());
+        geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        String city = addresses.get(0).getLocality();
+        String state = addresses.get(0).getAdminArea();
+        String country = addresses.get(0).getCountryName();
+        String postalCode = addresses.get(0).getPostalCode();
+        String knownName = addresses.get(0).getFeatureName();
+        loc.setText("Current Location: " + address + city + state + country + postalCode + knownName +
+        "\n"+ "Latitude:" + location.getLatitude()+", Longitude:" + location.getLongitude());
         String or = location.getLatitude()+","+location.getLongitude();
         String dest = lat+","+lon;
 
@@ -116,6 +130,7 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
 
         new GeoTask(HomePage.this).execute(url);
     }
+
 
     @Override
     public void onProviderDisabled(String provider) {

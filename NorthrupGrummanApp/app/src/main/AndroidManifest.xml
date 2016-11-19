@@ -29,7 +29,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".EditDirections"
-            android:parentActivityName=".HomePage">
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
