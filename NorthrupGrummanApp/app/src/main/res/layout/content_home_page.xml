@@ -13,6 +13,7 @@
     tools:context="com.example.brye.northrupgrummanapp.HomePage"
     tools:showIn="@layout/activity_home_page">
 
+<<<<<<< HEAD
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,12 +59,15 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+=======
+>>>>>>> origin/master
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Direction"
         android:id="@+id/btn_newDirection"
+<<<<<<< HEAD
         android:layout_below="@+id/button_get"
         android:layout_alignLeft="@+id/editText_to"
         android:layout_alignStart="@+id/editText_to"
@@ -81,4 +85,19 @@
         android:layout_toEndOf="@+id/textView_info"
         android:layout_marginTop="15dp" />
 
+=======
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="createNewDirection" />
+
+    <TextView
+        android:layout_width="323dp"
+        android:layout_height="102dp"
+        android:id="@+id/loc"
+        android:textAlignment="center"
+        android:layout_weight="1"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+>>>>>>> origin/master
 </RelativeLayout>

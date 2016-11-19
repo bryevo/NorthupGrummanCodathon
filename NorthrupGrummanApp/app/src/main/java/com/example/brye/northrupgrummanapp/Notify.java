@@ -13,6 +13,8 @@ import android.support.v4.app.NotificationCompat;
 
 public class Notify {
 
+
+
     public static void newNotification(String title, String text, Context context) {
 
         NotificationCompat.Builder mBuilder =
