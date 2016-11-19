@@ -23,6 +23,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import static com.example.brye.northrupgrummanapp.R.id.textView_result1;
 import static com.example.brye.northrupgrummanapp.R.id.url;
 
@@ -124,7 +126,7 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
     public void onLocationChanged(Location location) {
         loc.setText("Latitude:" + location.getLatitude() + ", Longitude:" + location.getLongitude());
         String or = location.getLongitude()+","+location.getLatitude();
-        String dest = lon + "," + lat;
+        String dest = lon+","+lat;
 
         String url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+or+"&destinations="+dest+"&key=AIzaSyBcx3w9EN8P0GySufslLpXNTwK8uRitjsE";
         Log.d("ayy",url);
