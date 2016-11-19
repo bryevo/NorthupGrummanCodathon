@@ -33,6 +33,7 @@ public class HomePage extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         init();
+        Notify.newNotification("Update Alert", "Traffic: Severe Accident", this);
     }
 
     @Override

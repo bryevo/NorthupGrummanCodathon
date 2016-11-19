@@ -10,51 +10,29 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.brye.northrupgrummanapp.EditDirections">
 
-
-    <SearchView
+    <fragment
+        android:id="@+id/autocomplete_fragment"
+        android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/current_Search"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="350dp" />
-
-    <Button
-        android:text="LOC1"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_curLoc"
-        android:layout_alignTop="@+id/current_Search"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="7dp"
-        android:id="@+id/dest_Search"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/current_Search"
-        android:layout_alignEnd="@+id/current_Search"
-        android:layout_marginRight="7dp"
-        android:layout_marginBottom="275dp" />
-
-    <Button
-        android:text="LOC2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/txt_stuff1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_destLoc"
-        android:layout_alignTop="@+id/dest_Search"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.viralandroid.googlemapsandroidapi.MapsActivity" />
+        android:layout_below="@+id/autocomplete_fragment"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:autoLink="all"/>
+
+    <TextView
+        android:id="@+id/txt_stuff2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_location"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:autoLink="all"/>
 </RelativeLayout>
