@@ -74,7 +74,7 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
 
             ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  },1);
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 0, this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 20000, 0, this);
 
 
         Notify.newNotification("Update Alert", "Traffic: Severe Accident", this);
@@ -124,9 +124,9 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
 
     @Override
     public void onLocationChanged(Location location) {
-        loc.setText("Latitude:" + location.getLatitude() + ", Longitude:" + location.getLongitude());
-        String or = location.getLongitude()+","+location.getLatitude();
-        String dest = lon+","+lat;
+        loc.setText("Latitude:" + location.getLatitude()+", Longitude:" + location.getLongitude());
+        String or = location.getLatitude()+","+location.getLongitude();
+        String dest = lat+","+lon;
 
         String url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins="+or+"&destinations="+dest+"&key=AIzaSyBcx3w9EN8P0GySufslLpXNTwK8uRitjsE";
         Log.d("ayy",url);
