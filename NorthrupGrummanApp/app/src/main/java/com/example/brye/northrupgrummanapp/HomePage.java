@@ -75,7 +75,7 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
     public void setDouble(String result) {
         String res[] = result.split(",");
         Double min = Double.parseDouble(res[0])/60;
-        int dist=Integer.parseInt(res[1])/1000;
+        Double dist = Double.parseDouble(res[1])/1000;
         //tv_result1.setText("Duration= " + (int) (min / 60) + " hr " + (int) (min % 60) + " mins");
         //tv_result2.setText("Distance= " + dist + " kilometers");
 
@@ -119,7 +119,7 @@ public class HomePage extends AppCompatActivity implements GeoTask.Geo,LocationL
         String country = addresses.get(0).getCountryName();
         String postalCode = addresses.get(0).getPostalCode();
         String knownName = addresses.get(0).getFeatureName();
-        loc.setText("Current Location: " + address + city + state + country + postalCode + knownName +
+        loc.setText("Current Location: " + address + ", " + city + ", " + state + ", " + country + " "+ postalCode + knownName +
         "\n"+ "Latitude:" + location.getLatitude()+", Longitude:" + location.getLongitude());
         String or = location.getLatitude()+","+location.getLongitude();
         String dest = lat+","+lon;
